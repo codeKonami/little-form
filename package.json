@@ -1,0 +1,27 @@
+{
+  "name": "little-form",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Thomas Foricher",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/p5": "^1.5.0",
+    "esbuild": "^0.17.4",
+    "serve": "^14.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js --minify --sourcemap --target=chrome60,firefox60,safari11,edge18",
+    "watch": "esbuild src/index.ts --bundle --outfile=dist/index.js --sourcemap --target=chrome60,firefox60,safari11,edge18 --watch",
+    "serve": "serve -s ."
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "printWidth": 120
+  },
+  "dependencies": {
+    "mathjs": "^11.5.0",
+    "p5": "^1.5.0"
+  }
+}
