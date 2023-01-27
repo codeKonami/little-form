@@ -21,6 +21,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 19.x
+      - name: Build
+        run: |
+          yarn
+          yarn build
+          rm -Rf src node_modules
   # Single deploy job since we're just deploying
   deploy:
     environment:
