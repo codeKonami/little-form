@@ -21,10 +21,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: 🏗 Setup Node
         uses: actions/setup-node@v2
         with:
@@ -34,15 +38,6 @@ jobs:
           yarn
           yarn build
           rm -Rf src node_modules
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
